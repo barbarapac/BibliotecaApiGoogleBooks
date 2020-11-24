@@ -1,0 +1,10 @@
+<h4>
+  <p>Busque por seu livro :)</p>
+</h4>
+<div class="form-inline waves-light">
+  <div class="md-form mt-0 w-75">
+    <input style="width: 100%;" class="form-control mr-sm-2" type="text"
+    [(ngModel)]="livroBusca" placeholder="Digite o CEP"/>
+  </div>
+  <button class="btn btn-primary m-1" (click)="PesquisarLivro(livroBusca)">Pesquisar</button>
+</div>
