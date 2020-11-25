@@ -7,24 +7,15 @@ namespace BibliotecaApiGoogleBooks.DTO
 {
     public class AccessInfoDTO
     {
-        public string Country { get; set; }
-
-        public string Viewability { get; set; }
-
-        public bool Embeddable { get; set; }
-
-        public bool PublicDomain { get; set; }
-
-        public string TextToSpeechPermission { get; set; }
-
-        public EpubDTO Epub { get; set; }
-
-        public EpubDTO Pdf { get; set; }
-
-        public Uri WebReaderLink { get; set; }
-
-        public string AccessViewStatus { get; set; }
-
-        public bool QuoteSharingAllowed { get; set; }
+        public string country { get; set; }
+        public string viewability { get; set; }
+        public bool embeddable { get; set; }
+        public bool publicDomain { get; set; }
+        public string textToSpeechPermission { get; set; }
+        public EpubDTO epub { get; set; }
+        public EpubDTO pdf { get; set; }
+        public Uri webReaderLink { get; set; }
+        public string accessViewStatus { get; set; }
+        public bool quoteSharingAllowed { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace BibliotecaApiGoogleBooks.Repositories.Interfaces
     public interface ILivroRepository
     {
         IEnumerable<Livro> Livros { get; }
-        Livro GetByID(int ID);
+        Livro GetByID(string ID);
         void SalvarLivroFavorito(Livro livro);
         void ExcluirLivro(Livro livro);
     }

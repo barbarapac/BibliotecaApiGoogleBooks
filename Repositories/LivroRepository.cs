@@ -33,7 +33,7 @@ namespace BibliotecaApiGoogleBooks.Repositories
             }
         }
 
-        public Livro GetByID(int ID)
+        public Livro GetByID(string ID)
         {
             try
             {

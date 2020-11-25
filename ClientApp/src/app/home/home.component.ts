@@ -22,7 +22,7 @@ export class HomeComponent {
   }
 
   PesquisarLivro(cepBusca : string) {
-    this.http.get<livros[]>(this.baseUrl + 'api/BibliotecaApiGoogleBooks/BuscaLivro/' + cepBusca).subscribe(result => {
+    this.http.get<livros[]>(this.baseUrl + 'api/Livros/BuscaLivro/' + cepBusca).subscribe(result => {
       
       if (result){
         this.livro = result;
@@ -59,15 +59,11 @@ export class HomeComponent {
 }
 
 interface livros {
-  id: number;
-  cep: string;
-  logradouro: string;
-  complemento: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-  ibge: string;
-  gia: string;
-  ddd: string;
-  siafi: string;
+  id : string;
+  title : string;
+  description : string;
+  categories : string;
+  etag : string;
+  authors : string[];
+  thumbnail : string;
 }

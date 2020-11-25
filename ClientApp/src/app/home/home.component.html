@@ -4,7 +4,88 @@
 <div class="form-inline waves-light">
   <div class="md-form mt-0 w-75">
     <input style="width: 100%;" class="form-control mr-sm-2" type="text"
-    [(ngModel)]="livroBusca" placeholder="Digite o CEP"/>
+    [(ngModel)]="livroBusca" placeholder="Pesquisa"/>
   </div>
   <button class="btn btn-primary m-1" (click)="PesquisarLivro(livroBusca)">Pesquisar</button>
+</div>
+<br>
+<br>
+<div class="lista" *ngIf="livro">
+  <table class="table table-hover">
+    <colgroup>
+      <col span="1" style="width: 10%;">
+      <col span="1" style="width: 10%;">
+      <col span="1" style="width: 5%;">
+      <col span="1" style="width: 10%;">
+      <col span="1" style="width: 10%;">
+      <col span="1" style="width: 2%;">
+      <col span="1" style="width: 2%;">
+      <col span="1" style="width: 2%;">
+      <col span="1" style="width: 2%;">
+    </colgroup>
+    <thead class="thead-light">
+      <tr>
+        <th>Titulo</th>
+        <th>Descrição</th>
+        <th>Categoria</th>
+        <th>Etag</th>
+        <th>Autor(es)</th>
+        <th>Livro</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="content" *ngFor="let livro of livro">
+        <td>
+          <div>
+            {{livro.title}}
+          </div>
+        </td>
+        <td>
+          <div>
+            {{livro.description}}
+          </div>
+        </td>
+        <td>
+          <div>
+            {{livro.categories}}
+          </div>
+        </td>
+        <td>
+          <div>
+            {{livro.etag}}
+          </div>
+        </td>
+        <td>
+          <div>
+            {{livro.authors}}
+          </div>
+        </td>
+        <td>
+          <div class="img">
+            <img src="{{livro.Thumbnail}}">
+          </div>
+        </td>
+        <td>
+          <div><button class="btn btn-outline-primary" (click)="onClickButton(livro)">Favoritar</button></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<br>
+<div>
+  <div class="alert alert-success" role="alert" *ngIf="sucess">
+    Livro favoritado!
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="erro">
+      Ocorreu um problema o favoritar o Livro, tente novamente!
+  </div>
+  <div class="alert alert-secondary" role="alert" *ngIf="warning">
+      Não encontramos o Livro pesquisado! Tente novamente!
+  </div>
+  <div class="alert alert-warning" role="alert" *ngIf="favoritado">
+      Livro já favoritado! 
+  </div>
 </div>

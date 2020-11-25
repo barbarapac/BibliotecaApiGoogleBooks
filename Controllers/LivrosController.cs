@@ -14,12 +14,12 @@ namespace BibliotecaApiGoogleBooks.Controllers
     [Produces("application/json", "text/plain")]
     [Route("api/[controller]")]
     [ApiController]
-    public class BibliotecaApiGoogleBooksController : ControllerBase
+    public class LivrosController : ControllerBase
     {
         private readonly IConfiguration _config;
         private readonly ILivroRepository _repository;
 
-        public BibliotecaApiGoogleBooksController(IConfiguration config, ILivroRepository repository)
+        public LivrosController(IConfiguration config, ILivroRepository repository)
         {
             _config = config;
             _repository = repository;
@@ -30,7 +30,7 @@ namespace BibliotecaApiGoogleBooks.Controllers
         /// </summary>
         /// <param name="stringPesquisa"></param>
         /// <returns></returns>
-        [HttpGet("BuscaLivrosGoogleBooks/{stringPesquisa}")]
+        [HttpGet("BuscaLivro/{stringPesquisa}")]
         public async Task<IActionResult> BuscaLivro(string stringPesquisa)
         {
             try
@@ -40,17 +40,32 @@ namespace BibliotecaApiGoogleBooks.Controllers
                 HttpResponseMessage responseMessage = await client.GetAsync(urlRequisicao);
                 string response = await responseMessage.Content.ReadAsStringAsync();
 
-
-                List<LivroDTO> listaCep = new List<LivroDTO>();
+                List<ResponseLivroDTO> listaLivrosDTO = new List<ResponseLivroDTO>();
                 if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    LivroDTO livro = JsonConvert.DeserializeObject<LivroDTO>(response);
+                    ResponseLivroDTO livrosResponse = JsonConvert.DeserializeObject<ResponseLivroDTO>(response);
 
-                    if (livro != null)
+                    if (livrosResponse != null)
                     {
-                        listaCep.Add(livro);
+                        List<Livro> listaLivros = new List<Livro>();
 
-                        return Ok(listaCep);
+                        foreach (var l in livrosResponse.items)
+                        {
+                            Livro livro = new Livro()
+                            {
+                                Id = l.id,
+                                Title =  l.volumeInfo.title,
+                                Description = l.volumeInfo.description,
+                                Categories = l.volumeInfo.categories,
+                                Etag = l.etag,
+                                Authors = l.volumeInfo.authors,
+                                Thumbnail = l.volumeInfo.imageLinks.thumbnail
+                            };
+
+                            listaLivros.Add(livro);
+                        }
+
+                        return Ok(listaLivros);
                     }
                     return NoContent();
                 }
@@ -114,7 +129,7 @@ namespace BibliotecaApiGoogleBooks.Controllers
                     return Ok();
                 }
 
-                return UnprocessableEntity("Ese livro já está favoritado! :)");
+                return UnprocessableEntity("Esse livro já está favoritado! :)");
             }
             catch (Exception e)
             {
@@ -128,7 +143,7 @@ namespace BibliotecaApiGoogleBooks.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoverLivroFavorito(int id)
+        public async Task<IActionResult> RemoverLivroFavorito(string id)
         {
             try
             {
