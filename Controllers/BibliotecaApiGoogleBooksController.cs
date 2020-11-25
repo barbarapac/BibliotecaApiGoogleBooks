@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BibliotecaApiGoogleBooks.DTO;
@@ -8,7 +7,6 @@ using BibliotecaApiGoogleBooks.Models;
 using BibliotecaApiGoogleBooks.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace BibliotecaApiGoogleBooks.Controllers
@@ -16,12 +14,12 @@ namespace BibliotecaApiGoogleBooks.Controllers
     [Produces("application/json", "text/plain")]
     [Route("api/[controller]")]
     [ApiController]
-    public class LivrosController : ControllerBase
+    public class BibliotecaApiGoogleBooksController : ControllerBase
     {
         private readonly IConfiguration _config;
         private readonly ILivroRepository _repository;
 
-        public LivrosController(IConfiguration config, ILivroRepository repository)
+        public BibliotecaApiGoogleBooksController(IConfiguration config, ILivroRepository repository)
         {
             _config = config;
             _repository = repository;
