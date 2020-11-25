@@ -24,7 +24,7 @@
 - Executar o projeto através do IIS Express
 - Após inicializar o projeto, a página inicial será aberta em uma aba do navegador.
 
-### Horas gastas durante o desenvolvimento:
+### Horas para desenvolvimento:
 - Total: 4h 
     - 0h - Configuração do ambiente.
     - 0h - Desenvolvimento API;
