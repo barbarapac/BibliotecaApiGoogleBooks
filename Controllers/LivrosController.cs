@@ -54,10 +54,10 @@ namespace BibliotecaApiGoogleBooks.Controllers
                             Livro livro = new Livro()
                             {
                                 Id = l.id,
-                                Titulo =  l.volumeInfo.title,
-                                Descricao = l.volumeInfo.description,
-                                Etag = l.etag,
-                                CapaLivro = l.volumeInfo.imageLinks.thumbnail
+                                Titulo = !(l.volumeInfo.description is null) ? l.volumeInfo.title : "",
+                                Descricao = !(l.volumeInfo.description is null) ? l.volumeInfo.description : "",
+                                Etag = !(l.etag is null) ? l.etag : "",
+                                CapaLivro = !(l.volumeInfo.imageLinks is null) ? l.volumeInfo.imageLinks.thumbnail : null,
                             };
 
                             if (l.volumeInfo.categories != null)
@@ -152,7 +152,7 @@ namespace BibliotecaApiGoogleBooks.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("RemoverLivro/{id}")]
         public async Task<IActionResult> RemoverLivroFavorito(string id)
         {
             try

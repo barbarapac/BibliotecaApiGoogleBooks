@@ -9,6 +9,10 @@ export class FavoritosComponent {
   livros: livro[] = [];
   sucess = false;
   erro = false;
+  warning = false;
+  invalid = false;
+  favoritado = false;
+
 
   constructor(
     private http: HttpClient, 
@@ -18,7 +22,7 @@ export class FavoritosComponent {
   }
   
   ObterLivros(){
-    this.http.get<livro[]>(this.baseUrl + 'api/Livro/ListaLivrosFavoritos').subscribe(result => {
+    this.http.get<livro[]>(this.baseUrl + 'api/Livros/LivrosFavoritos').subscribe(result => {
       this.livros = result;
     }, 
     error => {
@@ -27,7 +31,7 @@ export class FavoritosComponent {
     });}
 
   onClickButton(id){
-    this.http.delete(this.baseUrl + 'api/Livro/' + id).subscribe(result => {
+    this.http.delete(this.baseUrl + 'api/Livros/RemoverLivro/' + id).subscribe(result => {
       this.sucess = true;
       this.ObterLivros();
       setTimeout(() => {  this.sucess = false; }, 4000);

@@ -21,8 +21,8 @@ export class HomeComponent {
     ){ 
   }
 
-  PesquisarLivro(cepBusca : string) {
-    this.http.get<livros[]>(this.baseUrl + 'api/Livros/BuscaLivro/' + cepBusca).subscribe(result => {
+  PesquisarLivro(livroBusca : string) {
+    this.http.get<livros[]>(this.baseUrl + 'api/Livros/BuscaLivro/' + livroBusca).subscribe(result => {
       
       if (result){
         this.livro = result;
