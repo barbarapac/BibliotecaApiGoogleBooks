@@ -60,10 +60,10 @@ export class HomeComponent {
 
 interface livros {
   id : string;
-  title : string;
-  description : string;
-  categories : string;
+  titulo : string;
+  descricao : string;
+  categorias : string[];
   etag : string;
-  authors : string[];
-  thumbnail : string;
+  autores : string[];
+  capaLivro : string;
 }

@@ -54,13 +54,23 @@ namespace BibliotecaApiGoogleBooks.Controllers
                             Livro livro = new Livro()
                             {
                                 Id = l.id,
-                                Title =  l.volumeInfo.title,
-                                Description = l.volumeInfo.description,
-                                Categories = l.volumeInfo.categories,
+                                Titulo =  l.volumeInfo.title,
+                                Descricao = l.volumeInfo.description,
                                 Etag = l.etag,
-                                Authors = l.volumeInfo.authors,
-                                Thumbnail = l.volumeInfo.imageLinks.thumbnail
+                                CapaLivro = l.volumeInfo.imageLinks.thumbnail
                             };
+
+                            if (l.volumeInfo.categories != null)
+                                foreach (var c in l.volumeInfo.categories)
+                                {
+                                    livro.Categorias += c + " ";
+                                }
+
+                            if (l.volumeInfo.authors != null)
+                                foreach (var a in l.volumeInfo.authors)
+                                {
+                                    livro.Autores += a + " ";
+                                }
 
                             listaLivros.Add(livro);
                         }
@@ -69,28 +79,6 @@ namespace BibliotecaApiGoogleBooks.Controllers
                     }
                     return NoContent();
                 }
-
-                return NoContent();
-            }
-            catch (Exception e)
-            {
-                return UnprocessableEntity(e.Message);
-            }
-        }
-
-        /// <summary>
-        /// Litas todos os Livros favoritados na base.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("LivrosFavoritos")]
-        public async Task<IActionResult> ListaLivrosFavoritos()
-        {
-            try
-            {
-                List<Livro> livros = (List<Livro>)_repository.Livros;
-
-                if (livros != null && livros.Count > 0)
-                    return Ok(livros);
 
                 return NoContent();
             }
@@ -138,7 +126,29 @@ namespace BibliotecaApiGoogleBooks.Controllers
         }
 
         /// <summary>
-        /// Remove livro da lista de livris favoritados
+        /// Litas todos os Livros favoritados na base.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("LivrosFavoritos")]
+        public async Task<IActionResult> ListaLivrosFavoritos()
+        {
+            try
+            {
+                List<Livro> livros = (List<Livro>)_repository.Livros;
+
+                if (livros != null && livros.Count > 0)
+                    return Ok(livros);
+
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return UnprocessableEntity(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Remove livro da lista de livros favoritados
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -147,7 +157,6 @@ namespace BibliotecaApiGoogleBooks.Controllers
         {
             try
             {
-
                 Livro livro = _repository.GetByID(id);
                 _repository.ExcluirLivro(livro);
 
