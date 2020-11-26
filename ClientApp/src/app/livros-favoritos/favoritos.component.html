@@ -1,6 +1,11 @@
 <h4>
-  <p>Livros favoritos</p>
+  <p>Aqui estão seus livros favoritos :)</p>
 </h4>
+<br>
+<div class="alert alert-success" role="alert" *ngIf="sucess">
+  Livro excluído com sucesso!
+</div>
+<br>
 <div class="lista" *ngIf="livros.length > 0">
   <table class="table table-hover">
     <colgroup>
@@ -54,9 +59,4 @@
       </tr>
     </tbody>
   </table>
-</div>
-<br>
-<br>
-<div class="alert alert-success" role="alert" *ngIf="sucess">
-  Livro excluído com sucesso!
 </div>

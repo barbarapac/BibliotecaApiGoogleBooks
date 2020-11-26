@@ -2,13 +2,29 @@
   <p>Busque por seu livro :)</p>
 </h4>
 <div class="form-inline waves-light">
-  <div class="md-form mt-0 w-75">
-    <input style="width: 100%;" class="form-control mr-sm-2" type="text"
+  <div>
+    <input style="width: 485%;" class="form-control mr-sm-2" type="text"
     [(ngModel)]="livroBusca" placeholder="Pesquisa"/>
   </div>
-  <button class="btn btn-primary m-1" (click)="PesquisarLivro(livroBusca)">Pesquisar</button>
+  <div style="margin-left: auto">
+    <button class="btn btn-primary m-1" (click)="PesquisarLivro(livroBusca)">Pesquisar</button>
+  </div>
 </div>
 <br>
+<div>
+  <div class="alert alert-success" role="alert" *ngIf="sucess">
+    Livro favoritado! :)
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="erro">
+      Ops! Tivemos um problema ao efetuar essa ação. Quer tentar novamente? :)
+  </div>
+  <div class="alert alert-secondary" role="alert" *ngIf="warning">
+      Não encontramos o Livro pesquisado. Tente novamente! :)
+  </div>
+  <div class="alert alert-warning" role="alert" *ngIf="favoritado">
+      Livro já favoritado! :)
+  </div>
+</div>
 <br>
 <div class="lista" *ngIf="livro">
   <table class="table table-hover">
@@ -63,20 +79,4 @@
       </tr>
     </tbody>
   </table>
-</div>
-<br>
-<br>
-<div>
-  <div class="alert alert-success" role="alert" *ngIf="sucess">
-    Livro favoritado!
-  </div>
-  <div class="alert alert-danger" role="alert" *ngIf="erro">
-      Ocorreu um problema o favoritar o Livro, tente novamente!
-  </div>
-  <div class="alert alert-secondary" role="alert" *ngIf="warning">
-      Não encontramos o Livro pesquisado! Tente novamente!
-  </div>
-  <div class="alert alert-warning" role="alert" *ngIf="favoritado">
-      Livro já favoritado! 
-  </div>
 </div>

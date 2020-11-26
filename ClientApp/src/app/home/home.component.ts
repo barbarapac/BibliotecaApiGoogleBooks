@@ -22,19 +22,21 @@ export class HomeComponent {
   }
 
   PesquisarLivro(livroBusca : string) {
-    this.http.get<livros[]>(this.baseUrl + 'api/Livros/BuscaLivro/' + livroBusca).subscribe(result => {
-      
-      if (result){
-        this.livro = result;
-      } else{
-        this.warning = true;
-        setTimeout(() => {  this.warning = false; }, 4000);
-      }
-
-    }, error => {
-      this.erro = true;
-      setTimeout(() => {  this.erro = false; }, 5000);
-    });
+    if (livroBusca != ""){
+      this.http.get<livros[]>(this.baseUrl + 'api/Livros/BuscaLivro/' + livroBusca).subscribe(result => {
+        
+        if (result){
+          this.livro = result;
+        } else{
+          this.warning = true;
+          setTimeout(() => {  this.warning = false; }, 4000);
+        }
+  
+      }, error => {
+        this.erro = true;
+        setTimeout(() => {  this.erro = false; }, 5000);
+      });
+    }
   }
 
   onClickButton(livro){
