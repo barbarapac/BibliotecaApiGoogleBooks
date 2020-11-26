@@ -30,5 +30,5 @@
 ### Horas para desenvolvimento:
 - Total: 5h 
     - 0h - Configuração do ambiente.
-    - 3h - Desenvolvimento API;
-    - 2h - Desenvolvimento Front-End.
+    - 2h - Desenvolvimento API;
+    - 3h - Desenvolvimento Front-End.
