@@ -1,5 +1,5 @@
 # Biblioteca Google Books
-## Aplicação de interface Web, integrada o Google books. Pesquise por seu livro e o adicione a sua lista de leitura.
+## Aplicação de interface Web, integrada o API Google books. Pesquise por seu livro e o adicione a sua lista de leitura.
 
 ### Tecnologias utilizadas:
 - .Net Cores 3.1
