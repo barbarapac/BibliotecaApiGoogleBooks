@@ -24,8 +24,11 @@
 - Executar o projeto através do IIS Express.
 - Pagina inicial da aplicação será aberta no seu navegador padrão.
 
+### Dificuldades encontradas:
+ - Trabalho atualmente apenas com desenvolvimento back-end, tive um pouco de dificuldade em relembrar alguns macetes do desenvolvimento front-end, porém no final gostei do resultado;
+ 
 ### Horas para desenvolvimento:
-- Total: 0h 
+- Total: 5h 
     - 0h - Configuração do ambiente.
-    - 0h - Desenvolvimento API;
-    - 0h - Desenvolvimento Front-End.
+    - 3h - Desenvolvimento API;
+    - 2h - Desenvolvimento Front-End.
